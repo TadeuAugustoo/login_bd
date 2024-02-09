@@ -39,14 +39,24 @@ PasswordLabel = Label(rightframe,text="Password: ", font=("Century Gothic", 15),
 PasswordLabel.place(x=40, y=150)
 
 #entrada da senha
-PasswordEntry = Entry(rightframe, width=30)
+PasswordEntry = Entry(rightframe, width=30, show="x")
 PasswordEntry.place(x=145, y=155)
 
 #botoes
+#login
 LoginButton = tk.Button(rightframe, text="Login", width=20)
 LoginButton.place(x=40, y= 220)
 
-RegisterButton = tk.Button(rightframe, text="Register", width=20)
+#funcao registrar
+def Register():
+    #removendo os botoes do login
+    LoginButton.place(x=601)
+    RegisterButton.place(x=601)
+
+    
+
+#registrar
+RegisterButton = tk.Button(rightframe, text="Register", width=20, command=Register)
 RegisterButton.place(x=200, y= 220)
 
 
