@@ -26,6 +26,10 @@ rightframe.pack(side=RIGHT)
 logolabel =Label(leftframe, image=logo,bg="MIDNIGHTBLUE")
 logolabel.place(x=10, y=35)
 
+#label login
+tituloLogin = Label(rightframe,text="LOGIN", font=("Century Gothic", 20), bg="MIDNIGHTBLUE",fg="red")
+tituloLogin.place(x=150, y=25)
+
 #label do user
 UserLabel = Label(rightframe,text="Username: ", font=("Century Gothic", 15), bg="MIDNIGHTBLUE",fg="white")
 UserLabel.place(x=40, y=75)
@@ -51,7 +55,24 @@ LoginButton.place(x=40, y= 220)
 def Register():
     #removendo os botoes do login
     LoginButton.place(x=601)
-    RegisterButton.place(x=601)
+    tituloLogin.place(x=601)
+    
+    #label login
+    tituloRegister = Label(rightframe,text="REGISTER", font=("Century Gothic", 20), bg="MIDNIGHTBLUE",fg="red")
+    tituloRegister.place(x=150, y=25)
+
+
+    def BackToLogin():
+        back.place(x=601)
+        tituloRegister.place(x=601)
+        LoginButton.place(x=40, y= 220)
+        tituloLogin.place(x=150, y=25)
+
+    #botao de voltar
+    back =tk.Button(rightframe,text="Back", width=20, command=BackToLogin)
+    back.place(x=40, y= 220) 
+
+   
 
     
 
