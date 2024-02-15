@@ -2,6 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
+import dataBaser
 
 #criando a janela
 
@@ -51,32 +52,45 @@ PasswordEntry.place(x=145, y=155)
 LoginButton = tk.Button(rightframe, text="Login", width=20)
 LoginButton.place(x=40, y= 220)
 
+def RegisterToDataBase():
+    Name = UserEntry.get()
+    Pass = PasswordEntry.get() 
+    dataBaser.cursor.execute("""
+    INSERT INTO Users(User, Password) VALUES (?, ?)
+    """, (Name, Pass))
+    dataBaser.conn.commit()
+    messagebox.showinfo(title="Register Info", message="Register Sucessfull")
+
 #funcao registrar
 def Register():
     #removendo os botoes do login
     LoginButton.place(x=601)
     tituloLogin.place(x=601)
+    RegisterButton.place(x=601)
     
     #label login
     tituloRegister = Label(rightframe,text="REGISTER", font=("Century Gothic", 20), bg="MIDNIGHTBLUE",fg="red")
     tituloRegister.place(x=150, y=25)
 
-
+    #Register dentro do Register
+    Register_RegisterButton = tk.Button(rightframe, text="Register", width=20, command= RegisterToDataBase)
+    Register_RegisterButton.place(x=200, y= 220)
+    
     def BackToLogin():
         back.place(x=601)
         tituloRegister.place(x=601)
+        Register_RegisterButton.place(x=601)
         LoginButton.place(x=40, y= 220)
         tituloLogin.place(x=150, y=25)
+        RegisterButton.place(x=200, y= 220)
+
 
     #botao de voltar
     back =tk.Button(rightframe,text="Back", width=20, command=BackToLogin)
     back.place(x=40, y= 220) 
 
    
-
-    
-
-#registrar
+#entrar na janela de registrar
 RegisterButton = tk.Button(rightframe, text="Register", width=20, command=Register)
 RegisterButton.place(x=200, y= 220)
 
